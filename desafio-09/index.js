@@ -1,9 +1,9 @@
-(function desafio09() {
-    /*
-    Crie uma IIFE que envolva todo o código desse arquivo. Faça também a
-    indentação correta do código, para ficar dentro da IIFE.
-    */
+/*
+Crie uma IIFE que envolva todo o código desse arquivo. Faça também a
+indentação correta do código, para ficar dentro da IIFE.
+*/
 
+(function desafio09() {
     /*
     Analise as funções abaixo (`myFunction`, `myFunction2` e `myFunction3`, e
     ajuste o posicionamento das variáveis e funções internas, para que os códigos
@@ -11,11 +11,11 @@
     correto da variável ou função chamada.
     */
     function myFunction() {
+        var number1 = 10;
+        var number2 = 20;
         console.log('Na função `myFunction`, o primeiro número é', number1);
         console.log('Na função `myFunction`, o segundo número é', number2);
-        var number1 = 10;
         return number1 + number2;
-        var number2 = 20;
     }
     myFunction();
 
@@ -23,12 +23,15 @@
         myFunction2();
     */
     function myFunction2() {
-        console.log('A soma de 10 e 20 é igual a', sum ? sum() : undefined);
+        var number1 = 10;
+        var number2 = 20;
+
         var sum = function sum() {
             return number1 + number2;
         };
-        var number1 = 10;
-        var number2 = 20;
+
+        console.log('A soma de 10 e 20 é igual a', sum ? sum() : undefined);
+
         return sum();
     }
     myFunction2();
@@ -37,14 +40,15 @@
         myFunction3();
     */
     function myFunction3() {
-        console.log('A soma de 40 e 50 é igual a', sum());
-        var number2 = 50;
-        console.log('Na função myFunction3, number1 é igual a', number1);
-        var number1 = 40;
-        return sum();
+        var number1 = 40
+        var number2 = 50
+
         function sum() {
-            return number1 + number2;
+            return number1 + number2
         };
+        console.log('A soma de 40 e 50 é igual a', sum());
+        console.log('Na função myFunction3, number1 é igual a', number1);
+        return sum();
     }
     myFunction3();
 
@@ -61,13 +65,17 @@
     por parâmetro, INVOCADA, e passando a ela por parâmetro os dois valores
     que foram passadas para a primeira função `calculator`.
     */
-    // ?
+    function calculator(x, y) {
+        return function (callback) {
+            return callback(x, y)
+        }
+    }
 
     /*
     Declare uma variável chamada `sum`, e atribua a ela a função `calculator`,
     passando dois números por parâmetro.
     */
-    // ?
+    let sum = calculator(22, 88)
 
     /*
     Sabemos que `sum` agora tem uma função atribuída a ela, que é o retorno de
@@ -79,14 +87,18 @@
     anônima tem como seus argumentos.
     */
     console.log('O resultado da soma é:');
-    // ?
+
+    console.log(sum(function (x, y) { return x + y }))
 
     /*
     Agora declare outra variáveis chamadas `subtraction`, `multiplication`,
     `division` e `mod`, e atribua à elas `calculator`, passando números
     diferentes para cada chamada.
     */
-    // ?
+    let subtraction = calculator(22, 88)
+    let multiplication = calculator(22, 88)
+    let division = calculator(22, 88)
+    let mod = calculator(22, 88)
 
     /*
     Mostre as variáveis acima no `console` (uma chamada de console por variável),
@@ -96,15 +108,15 @@
     chamada.
     */
     console.log('O resultado da subtração é:');
-    // ?
+    console.log(sum(function (x, y) { return x - y }))
 
     console.log('O resultado da multiplicação é:');
-    // ?
+    console.log(sum(function (x, y) { return x * y }))
 
     console.log('O resultado da divisão é:');
-    // ?
+    console.log(sum(function (x, y) { return x / y }))
 
     console.log('O resto da divisão é:');
-    // ?
+    console.log(sum(function (x, y) { return x % y }))
 
 })()
